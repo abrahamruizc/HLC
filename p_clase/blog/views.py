@@ -1,6 +1,7 @@
 # Create your views here.
 import datetime
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def saludo(request):
       return HttpResponse("Esta la primera página del blog")
@@ -37,3 +38,23 @@ def calculaEdadActual(request, edad, agno):
         """.format(agno, nueva_edad)
 
       return HttpResponse(documento)
+
+
+# def saludo(request):
+#     return render(request, "saludo.html", {"nombre_persona": "Juan", "apellido_persona": "Pérez", "fecha_actual": datetime.datetime.now()})
+
+class Persona(object):
+    def __init__(self, nombre, apellido):
+        self.nombre = nombre
+        self.apellido = apellido
+
+# def saludo(request):
+#     persona = Persona("Chema", "Durán")
+#     fecha_actual = datetime.datetime.now()
+#     return render(request, "saludo.html", {"nombre_persona":persona.nombre, "apellido_persona":persona.apellido, "fecha_actual":fecha_actual})
+
+def saludo(request):
+      persona = Persona("Chema", "Durán")
+      temas_del_curso = ["Formularios", "Modelos", "Vistas", "Despliegue"]
+      fecha_actual = datetime.datetime.now()
+      return render(request, "saludo.html", {"nombre_persona":persona.nombre, "apellido_persona":persona.apellido, "fecha_actual":fecha_actual, "temas" : temas_del_curso})
