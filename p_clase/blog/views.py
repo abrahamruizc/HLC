@@ -1,9 +1,9 @@
-from http.client import HTTPResponse
-from django.shortcuts import render
-
 # Create your views here.
+
+from django.http import HttpResponse
+
 def saludo(request):
-      return HTTPResponse("Esta la primera página del blog")
+      return HttpResponse("Esta la primera página del blog")
 
 def despedida(request):
-      return HTTPResponse("Esta es la página de despedida")
+      return HttpResponse("Esta es la página de despedida")
