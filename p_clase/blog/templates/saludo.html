@@ -1,5 +1,9 @@
 <html>
     <p>La lista de los temas es:</p>
+    {%comment%}     
+        Comentario1
+        Comentario2
+    {% endcomment %}
     <ul>
       {% if temas %} 
          {% for tema in temas %}
@@ -9,4 +13,6 @@
          <li>No hay temas</li>
      {% endif %}
     </ul>
+    {# Comentario #}
+    <p>{{ nombre_persona.nombre | upper }}</p>
 </html>
