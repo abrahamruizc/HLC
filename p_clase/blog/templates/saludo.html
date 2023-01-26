@@ -1,4 +1,5 @@
 <html>
+    {% include "barra.html" %}
     <p>La lista de los temas es:</p>
     {%comment%}     
         Comentario1
@@ -14,5 +15,10 @@
      {% endif %}
     </ul>
     {# Comentario #}
-    <p>{{ nombre_persona.nombre | upper }}</p>
+    <p>El nombre de la persona es: {{ nombre_persona | upper }}</p>
+
+    <p>Hoy es: {{ fecha_actual}}</p>
+
+    
 </html>
+
