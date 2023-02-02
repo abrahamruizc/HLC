@@ -2,7 +2,7 @@
 import datetime
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from blog.models import Articulos
 def saludo(request):
       return HttpResponse("Esta la primera página del blog")
 
@@ -66,3 +66,30 @@ def curso_django(request):
 def curso_python(request):
     fecha_actual = datetime.datetime.now()
     return render(request, "curso_python.html", {"fecha_actual":fecha_actual})      
+
+def crear(request, nombre, seccion, precio):
+      articulo = Articulos.crear_articulo(nombre, seccion, precio)
+      return render(request, "crear_articulo.html", {"articulo":articulo})
+
+def todos_articulos(request):
+      articulos = Articulos.todos_articulo()
+      return render(request, "mostrar_articulos.html", {"articulos":articulos})
+
+def borrar_articulos(request, id):
+      Articulos.borrar_articulo(id)
+      documento = """
+        <html>
+        <body>
+        <h2>
+        Articulo borrado {}
+        </h2>
+        </body>
+        </html>
+        """.format(id)
+
+      return HttpResponse(documento)
+
+def actualizar_articulos(request, id, nombre, seccion, precio):
+      articulo = Articulos.actualizar_articulo(id, nombre, seccion, precio)
+      
+      return render(request, "crear_articulo.html", {"articulo":articulo})
